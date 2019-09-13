@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Index</title>
+  </head>
+  <body>
+  	<h1>hello world</h1>
+  	<form>
+      <table border='1'>
+        <tr><td>user name :</td><td><input type="text" name="name"></td></tr>
+        <tr><td>password  :</td><td><input type="password" name="password"></td></tr>
+        <tr colspan='2'><td><input type='submit' name='sub' value='submit' style='width:100%'></td></tr>
+  	</form>
+  </body>
+</html>
