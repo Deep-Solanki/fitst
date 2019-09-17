@@ -1,11 +1,14 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var intern = mongoose.model('Deep_Solanki',{
+let intern = mongoose.model('deep',{
 	Name: {
-		type: String
+		type: String,
+		required: true,
+		minlength: 1
 	},
 	id: {
-		type: Number
+		type: Number,
+		minlength:2
 	}
 });
 

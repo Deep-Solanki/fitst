@@ -1,17 +1,23 @@
-var express = require('express');
-var bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
+const hbs = require('hbs');
 //////////////////////////////////////////////
-var {mongoose}= require('./mongoose');
-var {intern} = require('./intern');
+let {mongoose}= require('./mongoose');
+let {intern} = require('./intern');
 
-var {email} = require('./email');
+let {email} = require('./email');
 /////////////////////////////////////////////
-var app = express();
+let app = express();
 
 app.use(bodyParser.json());
 
-app.get('/post',(req, res) => {
-	var intern1 = new intern({
+// app.get('/',(req,res) => {
+// 	res.render('/home/deep/Desktop/node/database/server/signup.hbs')
+
+// });
+
+app.post('/post',(req, res) => {
+	let intern1 = new intern({
 		Name: req.body.Name
 	});
 
@@ -22,6 +28,14 @@ app.get('/post',(req, res) => {
 		}
 	)
 });
+
+app.get('/post',(req,res) => {
+	intern.find().then((deeps) => {
+		res.send({deeps})
+	},(err) => {
+		res.status(400).send(err);
+	})
+})
 
 
 app.listen(3000, () => {

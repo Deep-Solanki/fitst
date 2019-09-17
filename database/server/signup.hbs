@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title> Sign Up | MobPair Technologies </title>
+  </head>
+  <body>
+  	<script>
+  		function user(email){
+  			//this.email= email;
+  			alert('hii');
+  			alert(email);
+  			document.getElementById('demo').value = email;
+  		}
+  	</script>
+  	<p id="demo"></p>
+  	<form method="get">
+  		Email: <input type="email" name="email" placeholder="Enter Your Email" id="em1"><br>
+  		Password: <input type="password" name="password" placeholder="Enter Password"><br>
+  		<input type="submit" value="Sign Up" name="Sign Up" onclick='user()'>
+  	</form>
+  </body>
+</html>
