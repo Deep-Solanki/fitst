@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const hbs = require('hbs');
+const _ = require('lodash');
 const {ObjectID} = require('mongodb');
 //////////////////////////////////////////////
 let {mongoose}= require('./mongoose');
@@ -56,6 +57,54 @@ app.get('/post/:id',(req,res) => {
 	});
 });
 
+
+app.delete('/post/:id',(req,res) => {
+	let id = req.params.id;
+	if(!ObjectID.isValid(id)){
+		return res.status(404).send("id is invalid");
+	}
+
+	intern.findByIdAndRemove(id).then((deeps) => {
+		if(!deeps){
+			return res.status(404).send('id not found in databse');
+		}
+		console.log({deeps});
+		res.send({deeps});
+		
+	}).catch((err) => { 
+		res.status(404).send('data error');
+	});
+});
+
+
+app.patch('/post/:id',(req,res) => {
+	let id = req.params.id;
+	let body = _.pick(req.body,['Name','id','something']);
+
+	if(!ObjectID.isValid(id)){
+		return res.status(404).send("id is invalid");
+	}
+
+	if(_.isBoolean(body.something) && body.something){
+		body.time = new Date().getTime();
+	}else{
+		something = false;
+		time = null;
+	}
+
+	intern.findByIdAndUpdate(id, {$set: body}, {new: true}).then((deeps) => {
+		if(!deeps){
+			return res.status(404).send('id not found in databse');
+		}
+		console.log({deeps});
+		res.send({deeps});
+		
+	}).catch((err) => { 
+		res.status(404).send('data error');
+	});
+});
+
+
 app.listen(3000, () => {
 	console.log('Server started on port no. 3000')
 });
@@ -72,3 +121,6 @@ app.listen(3000, () => {
 // }, (err) => {
 // 	console.log('unable to save')
 // })
+
+
+///////1:54:76

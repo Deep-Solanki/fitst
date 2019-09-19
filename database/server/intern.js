@@ -9,6 +9,12 @@ let intern = mongoose.model('deep',{
 	id: {
 		type: Number,
 		minlength:2
+	},
+	something: {
+		type: Boolean,
+	},
+	time: {
+		type: Number
 	}
 });
 
